@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Boubacar Dime</title>
+<meta name="description" content="Boubacar Dime — Computer Science and Economics at the University of Maryland, College Park.">
+<meta name="theme-color" content="#1c1a1f">
+<meta property="og:title" content="Boubacar Dime">
+<meta property="og:description" content="Computer Science and Economics at the University of Maryland, College Park.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%231c1a1f'/><text x='16' y='23' font-family='Georgia,serif' font-size='20' fill='%23b096c2' text-anchor='middle'>B</text></svg>">
+
+<script>
+  // Applied before first paint so the page never flashes the wrong background.
+  try {
+    var t = localStorage.getItem('theme');
+    if (t !== 'dark' && t !== 'light') t = 'dark';
+    document.documentElement.setAttribute('data-theme', t);
+  } catch (e) {}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<pre id="art" class="art" aria-hidden="true"></pre>
+
+<div class="page">
+  <div class="toolbar">
+    <button id="theme-toggle" class="toggle" type="button" aria-label="Switch to light theme">LIGHT</button>
+  </div>
+
+  <header class="header">
+    <h1>Boubacar Dime</h1>
+    <p class="tagline">Computer Science and Economics at the University of Maryland, College Park</p>
+  </header>
+
+  <main class="content">
+    <div class="grid">
+
+      <h2 class="label">Experience</h2>
+      <div class="items">
+        <article>
+          <div class="meta">Jul &ndash; Aug 2026</div>
+          <div class="title">Agentic AI Developer Intern, NeuralSeek</div>
+          <p class="blurb">Built an investment research agent in their agent builder using NTL, with live retrieval, adversarial analysis and a visible reasoning trail.</p>
+        </article>
+        <article>
+          <div class="meta">Sep 2023 &ndash; Mar 2024</div>
+          <div class="title">Software Engineering Intern, Insight Interfaces</div>
+          <p class="blurb">Worked on Android app compliance and release readiness, from diagnosing a Play Store policy violation to mapping the 2024 requirements.</p>
+        </article>
+        <article>
+          <div class="meta">University of Maryland</div>
+          <div class="title">Founder &amp; President, Vertex Fund</div>
+          <p class="blurb">A student investment research group I started on campus.</p>
+        </article>
+      </div>
+
+      <h2 class="label label-projects">Projects</h2>
+      <div class="items items-projects">
+        <article>
+          <div class="meta">2026 &middot; TypeScript, MCP, OpenAI Apps SDK</div>
+          <div class="title"><a href="https://chatgpt.com/apps/draftmend/asdk_app_6a14f4e1362881918ef25e3d1784e036/">draftmend</a></div>
+          <p class="blurb">An AI document editor shipped as a ChatGPT app, with every tool contract defined once in a shared schema.</p>
+        </article>
+        <article>
+          <div class="meta">2026 &middot; Next.js, Supabase, Framer Motion</div>
+          <div class="title"><a href="https://shortcutting.xyz">shortcutting.xyz</a></div>
+          <p class="blurb">A keyboard editing speed game that records your keystrokes and replays the run afterward.</p>
+        </article>
+        <article>
+          <div class="meta">2025 &middot; Next.js, OpenAI API, ElevenLabs</div>
+          <div class="title"><a href="https://speakfluid.org/">Speakfluid</a></div>
+          <p class="blurb">A voice Spanish tutor: push to talk, speech to text, tutor model, low-latency reply.</p>
+        </article>
+      </div>
+
+      <h2 class="label label-wide">Fun facts</h2>
+      <div class="list list-wide">
+        <span>- I can type pretty fast, 170+ WPM (<a href="https://monkeytype.com/profile/boubies">monkeytype.com/profile/boubies</a>)</span>
+        <span>- I&rsquo;m currently learning Spanish and Arabic</span>
+        <span>- I used to buy and sell sneakers at scale using automation in high school</span>
+        <span>- I love personal finance and investing (and my CS2 skin collection)</span>
+      </div>
+
+      <h2 class="label label-wide">Reach</h2>
+      <div class="list list-wide list-reach">
+        <span><span class="key">Email:</span> <a href="mailto:boubacardime1@gmail.com">boubacardime1@gmail.com</a></span>
+        <span><span class="key">GitHub:</span> <a href="https://github.com/b0uu">github.com/b0uu</a></span>
+        <span><span class="key">LinkedIn:</span> <a href="https://linkedin.com/in/bdime">linkedin.com/in/bdime</a></span>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<script src="main.js"></script>
+</body>
+</html>

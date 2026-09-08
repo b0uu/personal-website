@@ -1,0 +1,210 @@
+*, *::before, *::after { box-sizing: border-box; }
+
+html[data-theme="dark"] {
+  --bg: #1c1a1f;
+  --ink: #ebe6ee;
+  --dim: #aea6b3;
+  --faint: #847d8a;
+  --accent: #b096c2;
+  --rule: rgba(235, 230, 238, .15);
+  --art: rgba(126, 101, 145, .42);
+  color-scheme: dark;
+}
+
+html[data-theme="light"] {
+  --bg: #f5f0f6;
+  --ink: #241d28;
+  --dim: #5f5566;
+  --faint: #918799;
+  --accent: #7b4b96;
+  --rule: rgba(36, 29, 40, .14);
+  --art: rgba(123, 75, 150, .22);
+  color-scheme: light;
+}
+
+/* The background colour lives on <html> so the overscroll / rubber-band area
+   at the top and bottom of the page paints in the theme colour instead of
+   revealing white. overscroll-behavior stops the bounce from chaining to the
+   browser chrome as well. */
+html {
+  background: var(--bg);
+  overscroll-behavior-y: none;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'EB Garamond', Georgia, serif;
+  -webkit-font-smoothing: antialiased;
+  overscroll-behavior-y: none;
+}
+
+a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+}
+a:hover { color: var(--accent); }
+
+/* ---- Generative ASCII backdrop -------------------------------------------
+   position: fixed pins it to the viewport, so it never scrolls, shifts, or
+   runs out at the top or bottom of the document no matter how long the page
+   gets. It is regenerated on resize to fill the new viewport exactly. */
+.art {
+  position: fixed;
+  top: -14px;
+  left: -10px;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+  margin: 0;
+  overflow: hidden;
+  pointer-events: none;
+  user-select: none;
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 13px;
+  line-height: 13px;
+  white-space: pre;
+  color: var(--art);
+}
+
+/* Legibility: hold the art back where the text column actually sits, and let
+   it run at full strength in the empty space to the right. The mask is in the
+   art layer's own coordinates, which start 10px left of the viewport. */
+@media (min-width: 900px) {
+  .art {
+    -webkit-mask-image: linear-gradient(to right,
+      rgba(0, 0, 0, .3) 0, rgba(0, 0, 0, .3) 640px, rgba(0, 0, 0, 1) 900px);
+    mask-image: linear-gradient(to right,
+      rgba(0, 0, 0, .3) 0, rgba(0, 0, 0, .3) 640px, rgba(0, 0, 0, 1) 900px);
+  }
+}
+
+/* Below that the text spans the full width, so there is no clear area to
+   protect - just take the whole layer down. */
+@media (max-width: 899px) {
+  .art { opacity: .42; }
+}
+
+.page {
+  position: relative;
+  z-index: 2;
+  min-height: 100vh;
+}
+
+.toolbar {
+  display: flex;
+  justify-content: flex-end;
+  padding: 14px 40px 0;
+}
+
+.toggle {
+  background: none;
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  padding: 4px 9px;
+  color: var(--faint);
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 10px;
+  letter-spacing: .1em;
+  cursor: pointer;
+}
+.toggle:hover { color: var(--accent); border-color: var(--accent); }
+.toggle:focus-visible { outline: 1px solid var(--accent); outline-offset: 2px; }
+
+.header { padding: 30px 44px 22px 56px; }
+
+.header h1 {
+  margin: 0;
+  font-size: clamp(27px, 3.4vw, 38px);
+  font-weight: 500;
+  line-height: 1.02;
+  letter-spacing: -.01em;
+}
+
+.tagline {
+  margin: 12px 0 0;
+  white-space: nowrap;
+  font-size: 16.5px;
+  line-height: 1.55;
+  color: var(--dim);
+}
+
+.content {
+  max-width: 640px;
+  padding: 18px 40px 88px 56px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 82px minmax(0, 1fr);
+  gap: 0 18px;
+}
+
+.label {
+  margin: 0;
+  font-size: 13.5px;
+  font-weight: 400;
+  letter-spacing: .02em;
+  color: var(--accent);
+  padding-top: 4px;
+}
+.label-projects { padding-top: 26px; }
+.label-wide { grid-column: 1 / -1; padding-top: 30px; }
+
+.items {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+.items-projects { padding-top: 24px; }
+
+.meta {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 10px;
+  letter-spacing: .06em;
+  color: var(--faint);
+}
+
+.title {
+  font-size: 16.5px;
+  line-height: 1.25;
+  margin-top: 2px;
+}
+
+.blurb {
+  margin: 3px 0 0;
+  font-size: 15px;
+  line-height: 1.42;
+  color: var(--dim);
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-top: 10px;
+  font-size: 15.5px;
+  line-height: 1.5;
+  color: var(--dim);
+}
+.list-wide { grid-column: 1 / -1; }
+.list-reach { color: var(--ink); }
+.key { color: var(--faint); }
+
+@media (max-width: 720px) {
+  .tagline { white-space: normal; }
+}
+
+@media (max-width: 560px) {
+  .toolbar { padding: 14px 22px 0; }
+  .header { padding: 24px 22px 18px; }
+  .content { padding: 14px 22px 64px; }
+  .grid { grid-template-columns: 1fr; }
+  .label, .label-projects, .label-wide { padding-top: 26px; }
+  .items, .items-projects { padding-top: 10px; }
+}

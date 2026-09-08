@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:'EB Garamond',Georgia,serif;-webkit-font-smoothing:antialiased}
+[data-theme="dark"]{--bg:#1c1a1f;--ink:#ebe6ee;--dim:#aea6b3;--faint:#847d8a;--accent:#b096c2;--rule:rgba(235,230,238,.15);--art:rgba(126,101,145,.42)}
+[data-theme="light"]{--bg:#f5f0f6;--ink:#241d28;--dim:#5f5566;--faint:#918799;--accent:#7b4b96;--rule:rgba(36,29,40,.14);--art:rgba(123,75,150,.22)}
+a{color:var(--ink);text-decoration:underline;text-decoration-color:var(--accent);text-underline-offset:3px;text-decoration-thickness:1px}
+a:hover{color:var(--accent)}
+</style>
+</helmet>
+
+<div data-theme="{{ theme }}" style="position:relative;min-height:100vh;background:var(--bg);color:var(--ink)">
+  <div aria-hidden="true" style="position:absolute;inset:0;overflow:hidden;pointer-events:none">
+    <pre style="position:absolute;top:-40px;left:-10px;margin:0;user-select:none;font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:13px;line-height:13px;white-space:pre;color:var(--art)">{{ art }}</pre>
+  </div>
+
+  <div style="position:relative;z-index:2;display:flex;justify-content:flex-end;padding:14px 40px 0">
+    <button onClick="{{ toggleTheme }}" style="background:none;border:1px solid var(--rule);border-radius:2px;padding:4px 9px;color:var(--faint);font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:10px;letter-spacing:.1em;cursor:pointer">{{ themeLabel }}</button>
+  </div>
+
+  <div style="position:relative;z-index:2;padding:30px 44px 22px 56px">
+    <h1 style="margin:0;font-size:clamp(27px,3.4vw,38px);font-weight:500;line-height:1.02;letter-spacing:-.01em">Boubacar Dime</h1>
+    <p style="margin:12px 0 0;max-width:none;white-space:nowrap;font-size:16.5px;line-height:1.55;color:var(--dim)">Computer Science and Economics at the University of Maryland, College Park</p>
+  </div>
+
+  <div style="position:relative;z-index:2;max-width:640px;padding:18px 40px 88px 56px">
+    <div style="display:grid;grid-template-columns:82px minmax(0,1fr);gap:0 18px">
+      <div style="font-size:13.5px;letter-spacing:.02em;color:var(--accent);padding-top:4px">Experience</div>
+      <div style="display:flex;flex-direction:column;gap:22px">
+        <sc-for list="{{ exp }}" as="e" hint-placeholder-count="3">
+          <div>
+            <div style="font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:10px;letter-spacing:.06em;color:var(--faint)">{{ e.when }}</div>
+            <div style="font-size:16.5px;line-height:1.25;margin-top:2px">{{ e.role }}, {{ e.org }}</div>
+            <p style="margin:3px 0 0;font-size:15px;line-height:1.42;color:var(--dim)">{{ e.blurb }}</p>
+          </div>
+        </sc-for>
+      </div>
+
+      <div style="font-size:13.5px;letter-spacing:.02em;color:var(--accent);padding-top:26px">Projects</div>
+      <div style="padding:24px 0 0;display:flex;flex-direction:column;gap:22px">
+        <sc-for list="{{ projects }}" as="p" hint-placeholder-count="3">
+          <div>
+            <div style="font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:10px;letter-spacing:.06em;color:var(--faint)">{{ p.year }} · {{ p.stack }}</div>
+            <div style="font-size:16.5px;line-height:1.25;margin-top:2px"><a href="#">{{ p.name }}</a></div>
+            <p style="margin:3px 0 0;font-size:15px;line-height:1.42;color:var(--dim)">{{ p.blurb }}</p>
+          </div>
+        </sc-for>
+      </div>
+
+      <div style="grid-column:1/-1;font-size:13.5px;letter-spacing:.02em;color:var(--accent);padding-top:30px">Fun facts</div>
+      <div style="grid-column:1/-1;padding:10px 0 0;display:flex;flex-direction:column;gap:4px;font-size:15.5px;line-height:1.5;color:var(--dim)">
+        <span>- I can type pretty fast, 170+ WPM (<a href="https://monkeytype.com/profile/boubies">monkeytype.com/profile/boubies</a>)</span>
+        <span>- I&rsquo;m currently learning Spanish and Arabic</span>
+        <span>- I used to buy and sell sneakers at scale using automation in high school</span>
+        <span>- I love personal finance and investing (and my CS2 skin collection)</span>
+      </div>
+
+      <div style="grid-column:1/-1;font-size:13.5px;letter-spacing:.02em;color:var(--accent);padding-top:30px">Reach</div>
+      <div style="grid-column:1/-1;padding:10px 0 0;display:flex;flex-direction:column;gap:4px;font-size:15.5px">
+        <span><span style="color:var(--faint)">Email:</span> <a href="mailto:boubacardime1@gmail.com">boubacardime1@gmail.com</a></span>
+        <span><span style="color:var(--faint)">GitHub:</span> <a href="https://github.com/b0uu">github.com/b0uu</a></span>
+        <span><span style="color:var(--faint)">LinkedIn:</span> <a href="https://linkedin.com/in/bdime">linkedin.com/in/bdime</a></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;theme&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;dark&quot;,&quot;light&quot;],&quot;default&quot;:&quot;dark&quot;,&quot;tsType&quot;:&quot;'dark' | 'light'&quot;}}">
+const RAMP = " ...:::---===+++**##%%";
+
+const EXP = [
+  { role: "Agentic AI Developer Intern", org: "NeuralSeek", when: "Jul – Aug 2026",
+    blurb: "Built an investment research agent in their agent builder using NTL, with live retrieval, adversarial analysis and a visible reasoning trail." },
+  { role: "Software Engineering Intern", org: "Insight Interfaces", when: "Sep 2023 – Mar 2024",
+    blurb: "Worked on Android app compliance and release readiness, from diagnosing a Play Store policy violation to mapping the 2024 requirements." },
+  { role: "Founder & President", org: "Vertex Fund", when: "University of Maryland",
+    blurb: "A student investment research group I started on campus." }
+];
+
+const PROJECTS = [
+  { name: "draftmend", year: "2026", stack: "TypeScript, MCP, OpenAI Apps SDK",
+    blurb: "An AI document editor shipped as a ChatGPT app, with every tool contract defined once in a shared schema." },
+  { name: "shortcutting.xyz", year: "2026", stack: "Next.js, Supabase, Framer Motion",
+    blurb: "A keyboard editing speed game that records your keystrokes and replays the run afterward." },
+  { name: "Speakfluid", year: "2025", stack: "Next.js, OpenAI API, ElevenLabs",
+    blurb: "A voice Spanish tutor: push to talk, speech to text, tutor model, low-latency reply." }
+];
+
+// Rings — two interfering circular fields, banded into ramp characters.
+const ringField = (x, y) => {
+  const a = Math.hypot(x - 7, y - 5), b = Math.hypot(x - 22, y - 12);
+  return Math.sin(a * 1.5) + Math.cos(b * 1.25) + .4 * Math.sin((x + y) * .5);
+};
+
+function buildArt(cols, rows) {
+  const T = .88, scale = .5;
+  const lines = [];
+  for (let y = 0; y < rows; y++) {
+    let line = "";
+    for (let x = 0; x < cols; x++) {
+      const f = ringField(x * 0.055, y * 0.085);
+      const band = Math.abs(((f * scale) % 1 + 1) % 1 - 0.5) * 2;
+      const edge = 1 - band;
+      line += edge > T ? RAMP[Math.min(RAMP.length - 1, Math.floor(((edge - T) / (1 - T)) * RAMP.length))] : " ";
+    }
+    lines.push(line.replace(/\s+$/, ""));
+  }
+  return lines.join("\n");
+}
+
+class Component extends DCLogic {
+  state = { theme: this.props.theme || "dark", art: "" };
+
+  componentDidMount() { this.regen(); window.addEventListener("resize", this.onResize); }
+  componentWillUnmount() { window.removeEventListener("resize", this.onResize); clearTimeout(this._t); }
+  onResize = () => { clearTimeout(this._t); this._t = setTimeout(this.regen, 200); };
+  componentDidUpdate(prev) { if (prev.theme !== this.props.theme && this.props.theme) this.setState({ theme: this.props.theme }); }
+
+  regen = () => {
+    const w = window.innerWidth || 1200, h = window.innerHeight || 900;
+    this.setState({ art: buildArt(Math.ceil(w / 7.05) + 20, Math.ceil((h * 2.2) / 12) + 8) });
+  };
+
+  renderVals() {
+    const dark = this.state.theme === "dark";
+    return {
+      theme: this.state.theme, art: this.state.art,
+      themeLabel: dark ? "LIGHT" : "DARK",
+      toggleTheme: () => this.setState({ theme: dark ? "light" : "dark" }),
+      exp: EXP, projects: PROJECTS
+    };
+  }
+}
+
+</script>
+</body>
+</html>
