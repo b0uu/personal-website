@@ -29,6 +29,11 @@ html[data-theme="light"] {
      instead, which costs no layout space. */
   --buffer-top: 0px;
   --buffer-bottom: max(96px, 12vh);
+
+  /* One duration and curve for every hover, so links and the toggle settle
+     at the same rate. */
+  --hover-dur: .22s;
+  --hover-ease: cubic-bezier(.4, 0, .2, 1);
 }
 
 /* The background colour lives on <html> so the overscroll / rubber-band area
@@ -57,8 +62,21 @@ a {
   text-decoration-color: var(--accent);
   text-underline-offset: 3px;
   text-decoration-thickness: 1px;
+  transition:
+    color var(--hover-dur) var(--hover-ease),
+    text-decoration-color var(--hover-dur) var(--hover-ease),
+    text-underline-offset var(--hover-dur) var(--hover-ease),
+    text-decoration-thickness var(--hover-dur) var(--hover-ease);
 }
-a:hover { color: var(--accent); }
+
+/* The colour fade carries the effect; the underline easing down a pixel and
+   thickening slightly is what keeps it from feeling like a plain colour
+   swap. Neither property affects layout, so nothing reflows. */
+a:hover {
+  color: var(--accent);
+  text-underline-offset: 4px;
+  text-decoration-thickness: 1.5px;
+}
 
 /* ---- Generative ASCII backdrop -------------------------------------------
    position: fixed pins it to the viewport, so it never scrolls, shifts, or
@@ -131,7 +149,9 @@ a:hover { color: var(--accent); }
   letter-spacing: .06em;
   cursor: pointer;
   border-bottom: 1px solid transparent;
-  transition: color .15s ease, border-color .15s ease;
+  transition:
+    color var(--hover-dur) var(--hover-ease),
+    border-color var(--hover-dur) var(--hover-ease);
 }
 .toggle:hover {
   color: var(--accent);
@@ -233,4 +253,13 @@ a:hover { color: var(--accent); }
   .grid { grid-template-columns: 1fr; }
   .label, .label-projects, .label-wide { padding-top: 26px; }
   .items, .items-projects { padding-top: 10px; }
+}
+
+/* Honour a reduced-motion preference: keep every hover state, drop the
+   easing into it. */
+@media (prefers-reduced-motion: reduce) {
+  a,
+  .toggle {
+    transition: none;
+  }
 }
