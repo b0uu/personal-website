@@ -31,8 +31,9 @@ html[data-theme="light"] {
   --buffer-bottom: max(96px, 12vh);
 
   /* One duration and curve for every hover, so links and the toggle settle
-     at the same rate. */
-  --hover-dur: .22s;
+     at the same rate. Slow on purpose - the colour shift is meant to be
+     noticed only just. */
+  --hover-dur: .5s;
   --hover-ease: cubic-bezier(.4, 0, .2, 1);
 }
 
@@ -62,20 +63,13 @@ a {
   text-decoration-color: var(--accent);
   text-underline-offset: 3px;
   text-decoration-thickness: 1px;
-  transition:
-    color var(--hover-dur) var(--hover-ease),
-    text-decoration-color var(--hover-dur) var(--hover-ease),
-    text-underline-offset var(--hover-dur) var(--hover-ease),
-    text-decoration-thickness var(--hover-dur) var(--hover-ease);
+  transition: color var(--hover-dur) var(--hover-ease);
 }
 
-/* The colour fade carries the effect; the underline easing down a pixel and
-   thickening slightly is what keeps it from feeling like a plain colour
-   swap. Neither property affects layout, so nothing reflows. */
+/* Colour only. The underline keeps its offset and thickness on hover so the
+   link never changes shape. */
 a:hover {
   color: var(--accent);
-  text-underline-offset: 4px;
-  text-decoration-thickness: 1.5px;
 }
 
 /* ---- Generative ASCII backdrop -------------------------------------------
