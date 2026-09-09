@@ -114,19 +114,33 @@ a:hover { color: var(--accent); }
   padding: 14px 40px 0;
 }
 
+/* Deliberately not a bordered pill: it borrows the same 10px mono treatment
+   the date/stack meta lines use, so it reads as part of the type system
+   rather than as a control bolted on top of it. min-height holds the 23px
+   the old button occupied, so the header below it does not shift. */
 .toggle {
   background: none;
-  border: 1px solid var(--rule);
-  border-radius: 2px;
-  padding: 4px 9px;
+  border: 0;
+  padding: 0;
+  min-height: 23px;
+  display: inline-flex;
+  align-items: center;
   color: var(--faint);
   font-family: 'IBM Plex Mono', ui-monospace, monospace;
   font-size: 10px;
-  letter-spacing: .1em;
+  letter-spacing: .06em;
   cursor: pointer;
+  border-bottom: 1px solid transparent;
+  transition: color .15s ease, border-color .15s ease;
 }
-.toggle:hover { color: var(--accent); border-color: var(--accent); }
-.toggle:focus-visible { outline: 1px solid var(--accent); outline-offset: 2px; }
+.toggle:hover {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+.toggle:focus-visible {
+  outline: 1px solid var(--accent);
+  outline-offset: 3px;
+}
 
 .header { padding: 30px 44px 22px 56px; }
 

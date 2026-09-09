@@ -11,7 +11,7 @@
   function applyTheme(theme) {
     root.setAttribute('data-theme', theme);
     var next = theme === 'dark' ? 'light' : 'dark';
-    toggle.textContent = next.toUpperCase();
+    toggle.textContent = next;
     toggle.setAttribute('aria-label', 'Switch to ' + next + ' theme');
     // Keeps the mobile browser chrome the same colour as the page, so the
     // strip above and below the content never reads as a seam.
