@@ -29,12 +29,6 @@ html[data-theme="light"] {
      instead, which costs no layout space. */
   --buffer-top: 0px;
   --buffer-bottom: max(96px, 12vh);
-
-  /* One duration and curve for every hover, so links and the toggle settle
-     at the same rate. Slow on purpose - the colour shift is meant to be
-     noticed only just. */
-  --hover-dur: 1s;
-  --hover-ease: cubic-bezier(.4, 0, .2, 1);
 }
 
 /* The background colour lives on <html> so the overscroll / rubber-band area
@@ -63,14 +57,8 @@ a {
   text-decoration-color: var(--accent);
   text-underline-offset: 3px;
   text-decoration-thickness: 1px;
-  transition: color var(--hover-dur) var(--hover-ease);
 }
-
-/* Colour only. The underline keeps its offset and thickness on hover so the
-   link never changes shape. */
-a:hover {
-  color: var(--accent);
-}
+a:hover { color: var(--accent); }
 
 /* ---- Generative ASCII backdrop -------------------------------------------
    position: fixed pins it to the viewport, so it never scrolls, shifts, or
@@ -143,9 +131,6 @@ a:hover {
   letter-spacing: .06em;
   cursor: pointer;
   border-bottom: 1px solid transparent;
-  transition:
-    color var(--hover-dur) var(--hover-ease),
-    border-color var(--hover-dur) var(--hover-ease);
 }
 .toggle:hover {
   color: var(--accent);
@@ -247,13 +232,4 @@ a:hover {
   .grid { grid-template-columns: 1fr; }
   .label, .label-projects, .label-wide { padding-top: 26px; }
   .items, .items-projects { padding-top: 10px; }
-}
-
-/* Honour a reduced-motion preference: keep every hover state, drop the
-   easing into it. */
-@media (prefers-reduced-motion: reduce) {
-  a,
-  .toggle {
-    transition: none;
-  }
 }
