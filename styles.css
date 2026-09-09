@@ -33,7 +33,7 @@ html[data-theme="light"] {
   /* One duration and curve for every hover, so links and the toggle settle
      at the same rate. Slow on purpose - the colour shift is meant to be
      noticed only just. */
-  --hover-dur: .5s;
+  --hover-dur: 1s;
   --hover-ease: cubic-bezier(.4, 0, .2, 1);
 }
 
