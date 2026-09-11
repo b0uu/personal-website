@@ -1,3 +1,23 @@
+/* Self-hosted so a cold visit talks to one origin instead of three. Google's
+   stylesheet was 14KB of render-blocking CSS declaring 38 faces over 24 files;
+   the page only ever uses three, and EB Garamond ships them as a single
+   variable font. swap paints text in the fallback immediately. */
+@font-face {
+  font-family: 'EB Garamond';
+  font-style: normal;
+  font-weight: 400 500;
+  font-display: swap;
+  src: url('/fonts/eb-garamond-var.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/ibm-plex-mono-400.woff2') format('woff2');
+}
+
 *, *::before, *::after { box-sizing: border-box; }
 
 html[data-theme="dark"] {

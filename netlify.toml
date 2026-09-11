@@ -1,0 +1,7 @@
+# Font filenames are stable and their contents never change, so they can be
+# cached permanently. styles.css and main.js are left on Netlify's default
+# revalidating policy, since they are not content-hashed and do change.
+[[headers]]
+  for = "/fonts/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
